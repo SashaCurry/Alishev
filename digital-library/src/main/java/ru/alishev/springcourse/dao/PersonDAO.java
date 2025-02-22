@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.alishev.springcourse.models.Book;
 import ru.alishev.springcourse.models.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,7 @@ public class PersonDAO {
 
 
     public List<Person> index() {
-        return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
+        return jdbcTemplate.query("SELECT * FROM Person ORDER BY name", new BeanPropertyRowMapper<>(Person.class));
     }
 
 
@@ -44,5 +46,14 @@ public class PersonDAO {
     public void update(Person person) {
         jdbcTemplate.update("UPDATE Person SET name=?, year_birth=? WHERE person_id=?",
                             person.getName(), person.getYear_birth(), person.getPerson_id());
+    }
+
+    public List<Book> listBook(Person person) {
+        return jdbcTemplate.query("SELECT name, author, year_released FROM Book WHERE person_id=?",
+                                  new Object[]{person.getPerson_id()}, new BeanPropertyRowMapper<>(Book.class));
+    }
+
+    public void delete(Person person) {
+        jdbcTemplate.update("DELETE FROM Person WHERE person_id=?", person.getPerson_id());
     }
 }

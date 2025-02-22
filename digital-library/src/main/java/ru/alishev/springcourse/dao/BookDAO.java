@@ -21,7 +21,7 @@ public class BookDAO {
 
     public List<Book> index() {
         System.out.println("index is working...");
-        return jdbcTemplate.query("SELECT * FROM Book", new BeanPropertyRowMapper<>(Book.class));
+        return jdbcTemplate.query("SELECT * FROM Book ORDER BY name", new BeanPropertyRowMapper<>(Book.class));
     }
 
 
@@ -46,5 +46,14 @@ public class BookDAO {
     public void update(Book book) {
         jdbcTemplate.update("UPDATE Book SET name=?, author=?, year_released=? WHERE book_id=?",
                              book.getName(), book.getAuthor(), book.getYear_released(), book.getBook_id());
+    }
+
+
+    public void assignBook(int id, Book book) {
+        jdbcTemplate.update("UPDATE Book SET person_id=? WHERE book_id=?", book.getPerson_id(), id);
+    }
+
+    public void delete(int id) {
+        jdbcTemplate.update("DELETE FROM Book WHERE book_id=?", id);
     }
 }

@@ -58,4 +58,18 @@ public class PeopleController {
         personDAO.update(person);
         return "redirect:/people";
     }
+
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") int id, Model model) {
+        Person person = personDAO.show(id);
+        model.addAttribute("person", person);
+        model.addAttribute("books", personDAO.listBook(person));
+        return "people/show";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDAO.delete(personDAO.show(id));
+        return "redirect:/people";
+    }
 }
