@@ -35,9 +35,11 @@ public class PersonDAO {
                            .stream().findAny();
     }
 
+
     public void save(Person person) {
         jdbcTemplate.update("INSERT INTO Person (name, year_birth) VALUES (?, ?)", person.getName(), person.getYear_birth());
     }
+
 
     public void update(Person person) {
         jdbcTemplate.update("UPDATE Person SET name=?, year_birth=? WHERE person_id=?",

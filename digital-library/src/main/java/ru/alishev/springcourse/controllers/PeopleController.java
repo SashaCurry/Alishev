@@ -50,7 +50,7 @@ public class PeopleController {
     }
 
     @PatchMapping()
-    public String update(@ModelAttribute Person person, BindingResult bindingResult) {
+    public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
         personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
             return "people/edit";

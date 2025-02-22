@@ -15,11 +15,18 @@ public class Book {
     @Size(min = 8, max = 50, message = "Author should be between 10 and 50 characters")
     private String author;
 
-    @NotEmpty
     @Max(value = 2025, message = "Year of brith should be less than 2025")
     private int year_released;
 
-    private int person_id;
+    private Integer person_id;
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
 
     public String getName() {
         return name;
@@ -43,5 +50,13 @@ public class Book {
 
     public void setYear_released(int year_released) {
         this.year_released = year_released;
+    }
+
+    public Integer getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(Integer person_id) {
+        this.person_id = person_id;
     }
 }
