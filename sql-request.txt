@@ -16,7 +16,7 @@ INSERT INTO Person (name, year_birth) VALUES ('Иванов Иван Ивано�
 INSERT INTO Person (name, year_birth) VALUES ('Петров Пётр Петрович', 1960);
 INSERT INTO Person (name, year_birth) VALUES ('Алексеев Алексей Алексеевич', 1989);
 INSERT INTO Person (name, year_birth) VALUES ('Познер Владимир Владимирович', 1944);
-INSERT INTO into Person (name, year_birth) VALUES ('Фёдоров Мирон Янович', 1985);
+INSERT INTO Person (name, year_birth) VALUES ('Фёдоров Мирон Янович', 1985);
 
 INSERT INTO Book(name, author, year_released) VALUES ('Над пропастью во ржи', 'Джером Сэлинджер', 1951);
 INSERT INTO Book(name, author, year_released) VALUES ('День опричника', 'Владимир Сорокин', 2006);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="digital_library@localhost" uuid="afaef7c6-f3c1-4c1b-bc4a-045f28a34354">
+    <data-source source="LOCAL" name="digital_library@localhost" uuid="1168ee4a-b316-47e0-b643-69a12f7a48cf">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
