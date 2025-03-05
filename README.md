@@ -1,2 +1,1 @@
-Each project contains in other branchsEach project contains in other branchs
-
+1) Digital library (Learning how to work with Spring MVC)
