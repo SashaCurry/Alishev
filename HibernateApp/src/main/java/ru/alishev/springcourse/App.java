@@ -40,7 +40,7 @@ public class App {
             // 2) Получить фильм, а потом его рвежиссёра
             Movie movie = session.get(Movie.class, new Random().nextInt(1, 12));
             System.out.println(movie);
-            Director director = movie.getDirector();
+            Director director = director.getDirector();
             System.out.println(director);
 
             // 3) Добавить ещё один фильм для режжисёра
