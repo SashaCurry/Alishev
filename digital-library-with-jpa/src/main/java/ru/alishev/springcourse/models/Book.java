@@ -25,17 +25,17 @@ public class Book {
 
     @Max(value = 2025, message = "Year of brith should be less than 2025")
     @Column(name = "year_released")
-    private int year_released;
+    private int yearReleased;
 
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
 
     public Book() {}
-    public Book(String name, String author, int year_released) {
+    public Book(String name, String author, int yearReleased) {
         this.name = name;
         this.author = author;
-        this.year_released = year_released;
+        this.yearReleased = yearReleased;
     }
 
     public int getId() {
@@ -62,12 +62,12 @@ public class Book {
         this.author = author;
     }
 
-    public int getYear_released() {
-        return year_released;
+    public int getYearReleased() {
+        return yearReleased;
     }
 
-    public void setYear_released(int year_released) {
-        this.year_released = year_released;
+    public void setYearReleased(int yearReleased) {
+        this.yearReleased = yearReleased;
     }
 
     public Person getOwner() {
@@ -84,7 +84,7 @@ public class Book {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
-                ", year_released=" + year_released +
+                ", year_released=" + yearReleased +
                 ", owner=" + owner +
                 '}';
     }

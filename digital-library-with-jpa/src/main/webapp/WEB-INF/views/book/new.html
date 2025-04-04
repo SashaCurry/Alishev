@@ -18,13 +18,13 @@
     <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Error</div>
     <br/>
 
-    <label for="year_released">Введите год: </label>
-    <input type="text" id="year_released" th:field="*{year_released}"/>
-    <div style="color:red" th:if="${#fields.hasErrors('year_released')}" th:errors="*{year_released}">Error</div>
+    <label for="yearReleased">Введите год: </label>
+    <input type="text" id="yearReleased" th:field="*{yearReleased}"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yearReleased')}" th:errors="*{yearReleased}">Error</div>
     <br/>
 
     <input type="submit" value="Создать"/>
 </form>
-<a href="/people">Список книг</a>
+<a href="/book">Список книг</a>
 </body>
 </html>

@@ -7,7 +7,7 @@
     </title>
 </head>
 <body>
-    <p th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear_released()}">Book Data</p>
+    <p th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYearReleased()}">Book Data</p>
 
     <div th:if="${book.getOwner() == null}">
         <p>Эта книга свободна. Кому назначить её?</p>

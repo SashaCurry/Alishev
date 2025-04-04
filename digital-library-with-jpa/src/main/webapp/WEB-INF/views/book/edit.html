@@ -9,7 +9,7 @@
 <body>
 <form th:method="PATCH" th:action="@{/book}" th:object="${book}">
     <input type="hidden" th:field="*{id}" th:value="${book.getId()}"/>
-    <input type="hidden" name="personId" th:value="${book.getOwner().getId()}"/>
+    <input th:if="${book.getOwner() != null}" type="hidden" name="personId" th:value="${book.getOwner().getId()}"/>
 
     <label for="name">Введите название книги: </label>
     <input type="text" id="name" th:field="*{name}"/>
@@ -21,9 +21,9 @@
     <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Error</div>
     <br/>
 
-    <label for="year_released">Введите год: </label>
-    <input type="text" id="year_released" th:field="*{year_released}"/>
-    <div style="color:red" th:if="${#fields.hasErrors('year_released')}" th:errors="*{year_released}">Error</div>
+    <label for="yearReleased">Введите год: </label>
+    <input type="text" id="yearReleased" th:field="*{yearReleased}"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yearReleased')}" th:errors="*{yearReleased}">Error</div>
     <br/>
 
     <input type="submit" value="Редактировать"/>

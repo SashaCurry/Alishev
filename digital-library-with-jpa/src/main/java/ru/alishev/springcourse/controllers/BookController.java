@@ -12,6 +12,8 @@ import ru.alishev.springcourse.services.BooksService;
 import ru.alishev.springcourse.services.PeopleService;
 import ru.alishev.springcourse.util.BookValidator;
 
+import java.util.*;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -28,8 +30,22 @@ public class BookController {
 
 
     @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("books", booksService.findAll());
+    public String index(Model model, @RequestParam(name = "page", required = false) Integer page,
+                                     @RequestParam(name = "books_per_page", required = false) Integer booksPerPage,
+                                     @RequestParam(name = "sort_by_year", required = false) Boolean sortByYear) {
+        if (sortByYear == null) {
+            if (page == null || booksPerPage == null)
+                model.addAttribute("books", booksService.findAll());
+            else
+                model.addAttribute("books", booksService.findAll(page, booksPerPage));
+
+        }
+        else {
+            if (page == null || booksPerPage == null)
+                model.addAttribute("books", booksService.findAll(sortByYear));
+            else
+                model.addAttribute("books", booksService.findAll(page, booksPerPage, sortByYear));
+        }
         return "book/index";
     }
 
