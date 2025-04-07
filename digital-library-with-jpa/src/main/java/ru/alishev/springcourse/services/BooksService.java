@@ -10,6 +10,7 @@ import ru.alishev.springcourse.models.Person;
 import ru.alishev.springcourse.repositories.BooksRepository;
 import ru.alishev.springcourse.repositories.PeopleRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,13 +54,24 @@ public class BooksService {
     }
 
     @Transactional
-    public void assignBook(Book book, Person person) {
-        book.setOwner(peopleRepository.findById(person.getId()).orElse(null));
+    public void assignBook(Book book, Person person, boolean havePerson) {
+        if (havePerson) {
+            book.setOwner(peopleRepository.findById(person.getId()).orElse(null));
+            book.setDateAssign(new Date());
+        }
+        else {
+            book.setOwner(null);
+            book.setDateAssign(null);
+        }
         booksRepository.save(book);
     }
 
     @Transactional
     public void delete(int id) {
         booksRepository.deleteById(id);
+    }
+
+    public List<Book> findLikeStartWith(String prefix) {
+        return booksRepository.findByNameStartingWithIgnoreCase(prefix);
     }
 }

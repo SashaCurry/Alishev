@@ -14,7 +14,8 @@
         <hr/>
         <strong>Книги:</strong>
         <div th:each="book : ${books}">
-            <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear_released()}">Book Data</p>
+            <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearReleased()}"
+               th:style="${book.isDelay()} ? 'color: red;' : 'color: black;'">Book Data</p>
         </div>
     </div>
     <hr/>
@@ -23,9 +24,11 @@
         <input type="submit" value="Редактировать"/>
     </form>
     <br/>
+
     <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
         <input type="submit" value="Удалить"/>
     </form>
-    <a href="/people">Списко людей</a>
+
+    <a href="/people">Список людей</a>
 </body>
 </html>

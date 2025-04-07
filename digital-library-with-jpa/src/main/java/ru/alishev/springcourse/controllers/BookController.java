@@ -12,7 +12,6 @@ import ru.alishev.springcourse.services.BooksService;
 import ru.alishev.springcourse.services.PeopleService;
 import ru.alishev.springcourse.util.BookValidator;
 
-import java.util.*;
 
 @Controller
 @RequestMapping("/book")
@@ -108,11 +107,9 @@ public class BookController {
     public String assignBook(@PathVariable("id") int id,
                              @ModelAttribute("nullField") String nullField, @ModelAttribute("newPerson") Person person) {
         Book book = booksService.findOne(id);
+        boolean havePerson = !"null".equals(nullField);
 
-        if ("null".equals(nullField))
-            book.setOwner(null);
-        booksService.assignBook(book, person);
-
+        booksService.assignBook(book, person, havePerson);
         return "redirect:/book/" + id;
     }
 
@@ -121,5 +118,16 @@ public class BookController {
     public String delete(@PathVariable("id") int id) {
         booksService.delete(id);
         return "redirect:/book";
+    }
+
+    @GetMapping("/search")
+    public String search(Model model, @RequestParam(name = "nameBook", required = false) String nameBook) {
+        model.addAttribute("emptyPage", true);
+        if (nameBook != null) {
+            model.addAttribute("emptyPage", false);
+            model.addAttribute("books", booksService.findLikeStartWith(nameBook));
+        }
+
+        return "book/search";
     }
 }

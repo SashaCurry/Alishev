@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "Book")
 public class Book {
@@ -31,11 +33,22 @@ public class Book {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
 
+    @Column(name="date_assign")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateAssign;
+
     public Book() {}
     public Book(String name, String author, int yearReleased) {
         this.name = name;
         this.author = author;
         this.yearReleased = yearReleased;
+    }
+
+    public boolean isDelay() {
+        if (dateAssign == null)
+            return false;
+
+        return new Date().getTime() - dateAssign.getTime() > 86_400_000;
     }
 
     public int getId() {
@@ -78,14 +91,23 @@ public class Book {
         this.owner = owner;
     }
 
+    public Date getDateAssign() {
+        return dateAssign;
+    }
+
+    public void setDateAssign(Date dateAssign) {
+        this.dateAssign = dateAssign;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
-                ", year_released=" + yearReleased +
+                ", yearReleased=" + yearReleased +
                 ", owner=" + owner +
+                ", dateAssign=" + dateAssign +
                 '}';
     }
 }
