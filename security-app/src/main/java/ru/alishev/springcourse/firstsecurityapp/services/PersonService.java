@@ -3,6 +3,7 @@ package ru.alishev.springcourse.firstsecurityapp.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.alishev.springcourse.firstsecurityapp.models.Person;
 import ru.alishev.springcourse.firstsecurityapp.repositories.PersonRepository;
 
@@ -17,6 +18,7 @@ public class PersonService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public void addUser(Person person) {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         personRepository.save(person);
