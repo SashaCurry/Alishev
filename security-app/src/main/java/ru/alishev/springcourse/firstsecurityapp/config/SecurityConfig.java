@@ -36,12 +36,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
+        return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/hello", "/new-user", "/auth/registration").permitAll()
                         .anyRequest().authenticated()
                 )
-//                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .formLogin(form -> form
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/process_login")
